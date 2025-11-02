@@ -10,9 +10,9 @@ function callOpenAI(prompt) {
     }
 
     const data = JSON.stringify({
-      model: 'gpt-5',
+      model: 'gpt-5-mini',
       messages: [{ role: 'user', content: prompt }],
-      max_completion_tokens: 1500
+      max_completion_tokens: 500
     });
 
     const options = {
