@@ -1,0 +1,3 @@
+# Environment Variables
+.env.local
+node_modules/

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IBC</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app">
+      <!-- Landing Page -->
+      <div id="landing-page" class="landing-page">
+        <div class="landing-content">
+          <h1 class="landing-title">IBC</h1>
+          <p class="landing-tagline">AI-Powered Interview Preparation</p>
+          <button id="enter-btn" class="enter-btn">Begin</button>
+        </div>
+      </div>
+
+      <!-- Main App (hidden initially) -->
+      <div id="main-app" class="main-app" style="display: none;">
+        <nav class="top-nav">
+          <h1 class="nav-title">IBC</h1>
+          <div class="nav-actions">
+            <div class="search-box">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+              <input id="search" type="search" placeholder="Search..." />
+            </div>
+          </div>
+        </nav>
+
+        <div class="main-layout">
+          <aside class="sidebar">
+            <div class="category-tabs" id="category-tabs"></div>
+          </aside>
+
+          <main class="content-area">
+            <div class="stats-minimal" id="stats-bar" style="display: none;">
+              <div class="stat-item">
+                <span class="stat-value" id="stat-answered">0</span>
+                <span class="stat-label">Answered</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="stat-avg">0.0</span>
+                <span class="stat-label">Avg Stars</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="stat-total">56</span>
+                <span class="stat-label">Total</span>
+              </div>
+            </div>
+
+            <div id="question-list-view">
+              <div class="question-grid" id="question-list"></div>
+            </div>
+
+            <div id="answer-view" style="display: none;">
+              <div class="question-header">
+                <button class="back-btn" id="back-btn">← Back</button>
+                <div class="question-progress-text" id="question-progress"></div>
+              </div>
+              <div class="question-card-expanded">
+                <div id="current-question" class="current-question"></div>
+              </div>
+              <div class="answer-section">
+                <label class="answer-label">Your Answer</label>
+                <textarea id="answer-input" rows="8" placeholder="Type your answer here..."></textarea>
+                <button id="submit-answer" class="btn-primary">Submit Answer</button>
+              </div>
+              <div id="grading-result" class="grading-result"></div>
+              <button id="next-question-btn" class="btn-secondary" style="display: none; margin-top: 1rem; width: 100%;">Next Question →</button>
+            </div>
+            
+            <div id="empty-state" class="empty-state" style="display: none;">
+              <p>No questions found. Try a different search.</p>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
