@@ -262,7 +262,7 @@
       els.gradingResult.innerHTML = `
         <div class="grading-feedback">
           <strong>⚠ Grading Failed</strong>
-          <p>Unable to connect to AI grader. Please check your internet connection and try again.</p>
+          <p>${err.message || 'Unable to connect to AI grader. Please check your internet connection and try again.'}</p>
         </div>
       `;
       els.nextQuestionBtn.style.display = "block";
