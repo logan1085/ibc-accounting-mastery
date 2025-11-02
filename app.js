@@ -1,74 +1,44 @@
 (() => {
   const categories = [
-    "Income Statement", "Balance Sheet", "Cash Flow", "Valuation", "DCF & M&A"
+    "Financial Statements", "Concepts", "Calculations"
   ];
 
   const questionBank = {
-    "Income Statement": [
-      { q: "Walk me through the three financial statements and how they connect.", id: "IS1" },
-      { q: "What's the difference between operating expenses and non-operating expenses?", id: "IS2" },
-      { q: "How does depreciation affect the three financial statements?", id: "IS3" },
-      { q: "Explain the difference between EBIT, EBITDA, and net income.", id: "IS4" },
-      { q: "What's the relationship between revenue, COGS, and gross profit?", id: "IS5" },
-      { q: "How do deferred revenue and accrued expenses impact the income statement?", id: "IS6" },
-      { q: "What is the difference between operating income and net income?", id: "IS7" },
-      { q: "How does interest expense affect the income statement and taxes?", id: "IS8" },
-      { q: "Explain stock-based compensation and its impact on the P&L.", id: "IS9" },
-      { q: "What's the difference between GAAP and non-GAAP earnings?", id: "IS10" }
+    "Financial Statements": [
+      { q: "What are the three financial statements, and why do we need them?", id: "FS1" },
+      { q: "How do the financial statements link together?", id: "FS2" },
+      { q: "What's the most important financial statement?", id: "FS3" },
+      { q: "How might the financial statements of a company in the U.K. or Germany be different from those of a company based in the U.S.?", id: "FS4" }
     ],
-    "Balance Sheet": [
-      { q: "What are the main components of the balance sheet?", id: "BS1" },
-      { q: "How does depreciation affect the balance sheet?", id: "BS2" },
-      { q: "Explain the relationship between assets, liabilities, and equity.", id: "BS3" },
-      { q: "What's the difference between current and non-current assets?", id: "BS4" },
-      { q: "How does issuing debt affect the balance sheet?", id: "BS5" },
-      { q: "What is working capital and how is it calculated?", id: "BS6" },
-      { q: "Explain the difference between tangible and intangible assets.", id: "BS7" },
-      { q: "How does an acquisition affect the buyer's balance sheet?", id: "BS8" },
-      { q: "What is goodwill and how is it created?", id: "BS9" },
-      { q: "Explain the difference between retained earnings and dividends.", id: "BS10" },
-      { q: "What happens to the balance sheet when a company buys back stock?", id: "BS11" },
-      { q: "How do operating leases differ from capital leases on the balance sheet?", id: "BS12" }
+    "Concepts": [
+      { q: "How do you know when a revenue or expense line item should appear on the Income Statement?", id: "C1" },
+      { q: "A company collects cash payments from customers for a monthly subscription service one year in advance. Why do companies do this, and what is the cash flow impact?", id: "C2" },
+      { q: "Why is Accounts Receivable (AR) an Asset but Deferred Revenue (DR) a Liability?", id: "C3" },
+      { q: "What are \"Deferred Taxes,\" and how do they affect the statements?", id: "C4" },
+      { q: "A junior accountant in your department asks about how to fund the company's operations via external sources and how they impact the financial statements. What do you say?", id: "C5" },
+      { q: "Your firm recently acquired another company for $1,000 and created Goodwill of $400 and Other Intangible Assets of $200 on the Balance Sheet. A junior accountant in your department asks you why your firm did this – how would you respond?", id: "C6" },
+      { q: "Explain lease accounting on the financial statements under IFRS 16 / ASC 842, including the differences between Operating Leases and Finance Leases.", id: "C7" },
+      { q: "What's the difference between Deferred Tax Assets and Deferred Tax Liabilities? How do Net Operating Losses (NOLs) factor in?", id: "C8" },
+      { q: "How do you calculate Free Cash Flow (FCF), and what does it mean?", id: "C9" },
+      { q: "What is Working Capital? What does it mean if it's positive or negative?", id: "C10" },
+      { q: "What does the Change in Working Capital mean?", id: "C11" },
+      { q: "In its filings, a company states that EBITDA is a \"proxy\" for its Cash Flow from Operations. The company's EBITDA has been positive, growing at 20% for the past three years. However, the company recently ran low on Cash and filed for bankruptcy. How could this have happened?", id: "C12" },
+      { q: "How do you calculate Return on Invested Capital (ROIC), and what does it tell you?", id: "C13" },
+      { q: "What are the advantages and disadvantages of ROE, ROA, and ROIC for measuring company performance?", id: "C14" }
     ],
-    "Cash Flow": [
-      { q: "Walk me through the cash flow statement from top to bottom.", id: "CF1" },
-      { q: "What's the difference between the direct and indirect method of cash flows?", id: "CF2" },
-      { q: "Why can a company show profit but have negative cash flow?", id: "CF3" },
-      { q: "How does an increase in accounts receivable affect cash flow?", id: "CF4" },
-      { q: "What's the difference between operating, investing, and financing cash flows?", id: "CF5" },
-      { q: "How does depreciation affect operating cash flow?", id: "CF6" },
-      { q: "Explain how changes in working capital impact cash flow.", id: "CF7" },
-      { q: "What happens to cash flow when a company increases inventory?", id: "CF8" },
-      { q: "How does issuing equity or debt affect the cash flow statement?", id: "CF9" },
-      { q: "Explain free cash flow and why it's important.", id: "CF10" }
-    ],
-    "Valuation": [
-      { q: "Walk me through a DCF valuation from start to finish.", id: "VAL1" },
-      { q: "What's the difference between enterprise value and equity value?", id: "VAL2" },
-      { q: "How do you calculate WACC and what does it represent?", id: "VAL3" },
-      { q: "What are the main drivers of a company's valuation?", id: "VAL4" },
-      { q: "Explain the difference between unlevered and levered free cash flow.", id: "VAL5" },
-      { q: "How do you determine terminal value in a DCF?", id: "VAL6" },
-      { q: "What is the difference between trading and transaction comps?", id: "VAL7" },
-      { q: "Walk me through the formula for enterprise value.", id: "VAL8" },
-      { q: "What is the difference between IRR and NPV?", id: "VAL9" },
-      { q: "How do you adjust EBIT to get to unlevered free cash flow?", id: "VAL10" },
-      { q: "Explain accretion and dilution in an M&A transaction.", id: "VAL11" },
-      { q: "What is the difference between precedent transactions and public comps?", id: "VAL12" }
-    ],
-    "DCF & M&A": [
-      { q: "Walk me through how to build an LBO model.", id: "LBO1" },
-      { q: "What are the main sources and uses of funds in an LBO?", id: "LBO2" },
-      { q: "Explain how debt paydown creates returns in an LBO.", id: "LBO3" },
-      { q: "What is the difference between a strategic and financial buyer?", id: "LBO4" },
-      { q: "Walk me through accretion/dilution analysis.", id: "LBO5" },
-      { q: "How do you calculate the combined pro forma financials in an M&A deal?", id: "LBO6" },
-      { q: "What are synergies and where do they show up on the financial statements?", id: "LBO7" },
-      { q: "Explain the purchase price allocation in an acquisition.", id: "LBO8" },
-      { q: "How does goodwill arise in an acquisition?", id: "LBO9" },
-      { q: "Walk me through how to model returns in an LBO.", id: "LBO10" },
-      { q: "What is the difference between a leveraged and unlevered IRR?", id: "LBO11" },
-      { q: "How do you calculate the minimum IRR required for a PE firm?", id: "LBO12" }
+    "Calculations": [
+      { q: "A company hires a new employee for a total cost of $100,000 per year. Walk me through how the financial statements change, assuming a 25% tax rate.", id: "CALC1" },
+      { q: "You go into a job interview, and the interviewer points out that every single Interview Guide has a question about how Depreciation going up by $10 affects the statements. So, he asks you to walk through a $10 *decrease* in Depreciation, assuming a 25% tax rate.", id: "CALC2" },
+      { q: "A company's CEO has decided to sell all its assets, starting with a factory recorded at a book value of $100 on its Balance Sheet. If this factory sells for $140, how do the statements change?", id: "CALC3" },
+      { q: "Walk me through the financial statements when a customer orders a product for $100 and receives it but hasn't yet paid for it. Then, walk me through the cash collection, combining it with the first step. Ignore COGS and other delivery costs for simplicity.", id: "CALC4" },
+      { q: "A company hires a marketing agency to run an online advertising campaign for its services. The marketing agency charges $10,000 for this initial campaign, delivers it, and invoices the company, which has 60 days to pay. Walk me through the statements.", id: "CALC5" },
+      { q: "Now, walk me through what happens ONLY in Step 2, when the company finally makes payment after 60 days. Also, explain intuitively what happens from start to finish.", id: "CALC6" },
+      { q: "Your friend's e-commerce company orders $200 of products from its main supplier. A month later, it sells these products for $500. Walk me through each step of this process SEPARATELY.", id: "CALC7" },
+      { q: "A Software-as-a-Service (SaaS) company bills customers upfront for an entire year of service and collects the cash before the contract begins. Walk me through the process for a $250 contract with a $50 delivery cost between January 1 and December 31 of the year. COMBINE the cash collection and revenue recognition.", id: "CALC8" },
+      { q: "A company with 1000 shares issues 500 new shares worth $1.00 on January 1 to fund its business. Then, it decides to issue Dividends per Share of $0.10 to all its shareholders at the end of the year. Walk me through both steps SEPARATELY on the statements.", id: "CALC9" },
+      { q: "A company issues $200 of Debt at a 10% interest rate. Walk me through the entire first year on the statements, including the initial issuance and the full interest payment. COMBINE both steps.", id: "CALC10" },
+      { q: "How does this change if, in addition to the 10% interest rate, the Debt now has a 20% principal repayment each year? Combine both steps and assume the principal repayment occurs on December 31.", id: "CALC11" },
+      { q: "A company that follows U.S. GAAP signs a 10-year Operating Lease on January 1. It will pay $160 in Rent each year. Assuming a 5% Discount Rate, walk me through the financial statements over this entire year. For simplicity, you may \"round\" and assume the Present Value of the lease payments equals $1,200.", id: "CALC12" }
     ]
   };
 
