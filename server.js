@@ -47,7 +47,7 @@ function callOpenAI(prompt, callback) {
   const data = JSON.stringify({
     model: 'gpt-5',
     messages: [{ role: 'user', content: prompt }],
-    max_completion_tokens: 500
+    max_completion_tokens: 1500
   });
 
   const options = {
