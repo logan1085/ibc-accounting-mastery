@@ -201,9 +201,13 @@
       return;
     }
 
-    els.submitAnswer.disabled = true;
-    els.submitAnswer.textContent = "Grading...";
-    els.nextQuestionBtn.style.display = "none";
+    if (els.submitAnswer) {
+      els.submitAnswer.disabled = true;
+      els.submitAnswer.textContent = "Grading...";
+    }
+    if (els.nextQuestionBtn) {
+      els.nextQuestionBtn.style.display = "none";
+    }
 
     try {
       const response = await fetch('/api/grade', {
@@ -254,8 +258,12 @@
       
       els.gradingResult.innerHTML = resultHTML;
       
-      els.nextQuestionBtn.style.display = "block";
-      els.answerInput.blur();
+      if (els.nextQuestionBtn) {
+        els.nextQuestionBtn.style.display = "block";
+      }
+      if (els.answerInput) {
+        els.answerInput.blur();
+      }
 
     } catch (err) {
       els.gradingResult.className = "grading-result show incorrect";
@@ -265,11 +273,15 @@
           <p>${err.message || 'Unable to connect to AI grader. Please check your internet connection and try again.'}</p>
         </div>
       `;
-      els.nextQuestionBtn.style.display = "block";
-      console.error(err);
+      if (els.nextQuestionBtn) {
+        els.nextQuestionBtn.style.display = "block";
+      }
+      console.error('Grading error:', err);
     } finally {
-      els.submitAnswer.disabled = false;
-      els.submitAnswer.textContent = "Submit Answer";
+      if (els.submitAnswer) {
+        els.submitAnswer.disabled = false;
+        els.submitAnswer.textContent = "Submit Answer";
+      }
     }
   }
 
@@ -304,6 +316,14 @@
   }
 
   function init() {
+    // Check for missing elements
+    const missing = Object.keys(els).filter(key => !els[key]);
+    if (missing.length > 0) {
+      console.error('Missing DOM elements:', missing);
+      alert('App initialization error. Please refresh the page.');
+      return;
+    }
+    
     els.search.addEventListener("input", render);
     els.submitAnswer.addEventListener("click", submitForGrading);
     els.nextQuestionBtn.addEventListener("click", nextQuestion);
