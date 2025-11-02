@@ -57,16 +57,12 @@
     categoryTabs: document.getElementById("category-tabs"),
     search: document.getElementById("search"),
     questionList: document.getElementById("question-list"),
-    answerPanel: document.getElementById("answer-panel"),
     currentQuestion: document.getElementById("current-question"),
     answerInput: document.getElementById("answer-input"),
     submitAnswer: document.getElementById("submit-answer"),
     gradingResult: document.getElementById("grading-result"),
-    availableCount: document.getElementById("available-count"),
-    statsBar: document.getElementById("stats-bar"),
     statTotal: document.getElementById("stat-total"),
     statAnswered: document.getElementById("stat-answered"),
-    statAvg: document.getElementById("stat-avg"),
     questionListView: document.getElementById("question-list-view"),
     answerView: document.getElementById("answer-view"),
     nextQuestionBtn: document.getElementById("next-question-btn"),
@@ -139,24 +135,26 @@
   }
 
   function render() {
-    const term = els.search.value.trim();
+    const term = els.search ? els.search.value.trim() : "";
     const filtered = filterQuestions(questionBank[activeCategory], term);
     
     if (filtered.length === 0) {
-      els.emptyState.style.display = "block";
-      els.questionList.innerHTML = "";
+      if (els.emptyState) els.emptyState.style.display = "block";
+      if (els.questionList) els.questionList.innerHTML = "";
     } else {
-      els.emptyState.style.display = "none";
-      els.questionList.innerHTML = filtered.map(renderQuestionCard).join("");
-      
-      // Bind click events
-      els.questionList.querySelectorAll(".question-card").forEach(card => {
-        card.addEventListener("click", () => {
-          const id = card.getAttribute("data-id");
-          const item = allQuestions.find(q => q.id === id);
-          openQuestion(item);
+      if (els.emptyState) els.emptyState.style.display = "none";
+      if (els.questionList) {
+        els.questionList.innerHTML = filtered.map(renderQuestionCard).join("");
+        
+        // Bind click events
+        els.questionList.querySelectorAll(".question-card").forEach(card => {
+          card.addEventListener("click", () => {
+            const id = card.getAttribute("data-id");
+            const item = allQuestions.find(q => q.id === id);
+            openQuestion(item);
+          });
         });
-      });
+      }
     }
     
     updateStats();
@@ -164,32 +162,30 @@
 
   function openQuestion(item) {
     currentQuestion = item;
-    els.currentQuestion.textContent = item.q;
-    els.answerInput.value = "";
-    els.gradingResult.className = "grading-result";
-    els.gradingResult.innerHTML = "";
-    els.nextQuestionBtn.style.display = "none";
+    if (els.currentQuestion) els.currentQuestion.textContent = item.q;
+    if (els.answerInput) {
+      els.answerInput.value = "";
+      els.answerInput.focus();
+    }
+    if (els.gradingResult) {
+      els.gradingResult.className = "grading-result";
+      els.gradingResult.innerHTML = "";
+    }
+    if (els.nextQuestionBtn) els.nextQuestionBtn.style.display = "none";
     
     // Update progress text
     const categoryQuestions = questionBank[activeCategory] || [];
     const currentIndex = categoryQuestions.findIndex(q => q.id === item.id);
-    els.questionProgress.textContent = `${currentIndex + 1} of ${categoryQuestions.length}`;
+    if (els.questionProgress) els.questionProgress.textContent = `${currentIndex + 1} of ${categoryQuestions.length}`;
     
-    els.questionListView.style.display = "none";
-    els.answerView.style.display = "block";
-    els.answerInput.focus();
+    if (els.questionListView) els.questionListView.style.display = "none";
+    if (els.answerView) els.answerView.style.display = "block";
   }
 
   function updateStats() {
     const answered = Object.keys(starsByQuestion).length;
-    const avgStars = answered > 0 
-      ? (Object.values(starsByQuestion).reduce((a, b) => a + b, 0) / answered).toFixed(1)
-      : "0.0";
-    
-    els.statTotal.textContent = allQuestions.length;
-    els.statAnswered.textContent = answered;
-    els.statAvg.textContent = avgStars;
-    els.statsBar.style.display = "flex";
+    if (els.statTotal) els.statTotal.textContent = allQuestions.length;
+    if (els.statAnswered) els.statAnswered.textContent = answered;
   }
 
   async function submitForGrading() {
