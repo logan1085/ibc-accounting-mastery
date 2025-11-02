@@ -34,8 +34,11 @@ In your Vercel project dashboard, add:
 
 ## Project Structure
 
-- `server.js` - Node.js server with OpenAI API endpoint
+- `server.js` - Local dev server with OpenAI API endpoint
+- `api/grade.js` - Vercel serverless function for production
 - `index.html` - Landing page and app
 - `styles.css` - UI styling
 - `app.js` - Client-side app logic
+
+Note: `server.js` is used for local development, while `api/grade.js` is used when deployed to Vercel.
 

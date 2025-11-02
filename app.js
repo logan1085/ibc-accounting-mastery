@@ -68,6 +68,7 @@
     nextQuestionBtn: document.getElementById("next-question-btn"),
     backBtn: document.getElementById("back-btn"),
     questionProgress: document.getElementById("question-progress"),
+    progressFill: document.getElementById("progress-fill"),
     emptyState: document.getElementById("empty-state")
   };
 
@@ -173,10 +174,13 @@
     }
     if (els.nextQuestionBtn) els.nextQuestionBtn.style.display = "none";
     
-    // Update progress text
+    // Update progress
     const categoryQuestions = questionBank[activeCategory] || [];
     const currentIndex = categoryQuestions.findIndex(q => q.id === item.id);
-    if (els.questionProgress) els.questionProgress.textContent = `${currentIndex + 1} of ${categoryQuestions.length}`;
+    const progress = ((currentIndex + 1) / categoryQuestions.length) * 100;
+    
+    if (els.progressFill) els.progressFill.style.width = progress + '%';
+    if (els.questionProgress) els.questionProgress.textContent = `${currentIndex + 1} of ${categoryQuestions.length} questions`;
     
     if (els.questionListView) els.questionListView.style.display = "none";
     if (els.answerView) els.answerView.style.display = "block";

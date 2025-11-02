@@ -43,7 +43,8 @@ npm run dev
 - `index.html` - Quiz UI structure
 - `styles.css` - Modern styling
 - `app.js` - Quiz logic, star system, API integration
-- `server.js` - Node server with OpenAI API endpoint
+- `server.js` - Local dev server (Node.js)
+- `api/grade.js` - Serverless function for production (Vercel)
 - `package.json` - npm scripts
 
 ## Tech Stack
