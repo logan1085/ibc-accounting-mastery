@@ -89,7 +89,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const { question, answer } = JSON.parse(body);
-        const prompt = `You are an expert Investment Banking interviewer grading technical accounting answers.
+        const prompt = `You are an expert Investment Banking interviewer grading technical accounting answers. Using the breaking into wall street guide! 
 
 Question: "${question}"
 

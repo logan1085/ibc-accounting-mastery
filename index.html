@@ -17,11 +17,17 @@
         </div>
       </div>
 
-      <!-- Main App (hidden initially) -->
+      <!-- Main App -->
       <div id="main-app" class="main-app" style="display: none;">
         <nav class="top-nav">
           <h1 class="nav-title">IBC</h1>
-          <div class="nav-actions">
+          <div class="nav-stats">
+            <span id="stat-answered">0</span> / <span id="stat-total">30</span> answered
+          </div>
+        </nav>
+
+        <div class="main-layout">
+          <aside class="sidebar">
             <div class="search-box">
               <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -29,53 +35,35 @@
               </svg>
               <input id="search" type="search" placeholder="Search..." />
             </div>
-          </div>
-        </nav>
-
-        <div class="main-layout">
-          <aside class="sidebar">
             <div class="category-tabs" id="category-tabs"></div>
           </aside>
 
           <main class="content-area">
-            <div class="stats-minimal" id="stats-bar" style="display: none;">
-              <div class="stat-item">
-                <span class="stat-value" id="stat-answered">0</span>
-                <span class="stat-label">Answered</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-value" id="stat-avg">0.0</span>
-                <span class="stat-label">Avg Stars</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-value" id="stat-total">30</span>
-                <span class="stat-label">Total</span>
-              </div>
-            </div>
-
+            <!-- Question List View -->
             <div id="question-list-view">
               <div class="question-grid" id="question-list"></div>
+              <div id="empty-state" class="empty-state" style="display: none;">
+                <p>No questions found</p>
+              </div>
             </div>
 
+            <!-- Answer View -->
             <div id="answer-view" style="display: none;">
-              <div class="question-header">
-                <button class="back-btn" id="back-btn">← Back</button>
-                <div class="question-progress-text" id="question-progress"></div>
+              <button class="back-btn" id="back-btn">← Back</button>
+              
+              <div class="question-container">
+                <div id="current-question" class="question-text"></div>
+                <div class="progress-indicator" id="question-progress"></div>
               </div>
-              <div class="question-card-expanded">
-                <div id="current-question" class="current-question"></div>
+
+              <div class="answer-container">
+                <textarea id="answer-input" rows="10" placeholder="Type your answer here..."></textarea>
+                <button id="submit-answer" class="btn-primary btn-large">Submit</button>
               </div>
-              <div class="answer-section">
-                <label class="answer-label">Your Answer</label>
-                <textarea id="answer-input" rows="8" placeholder="Type your answer here..."></textarea>
-                <button id="submit-answer" class="btn-primary">Submit Answer</button>
-              </div>
+
               <div id="grading-result" class="grading-result"></div>
-              <button id="next-question-btn" class="btn-secondary" style="display: none; margin-top: 1rem; width: 100%;">Next Question →</button>
-            </div>
-            
-            <div id="empty-state" class="empty-state" style="display: none;">
-              <p>No questions found. Try a different search.</p>
+              
+              <button id="next-question-btn" class="btn-secondary btn-large" style="display: none;">Next →</button>
             </div>
           </main>
         </div>
