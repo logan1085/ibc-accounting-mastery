@@ -42,6 +42,17 @@
     ]
   };
 
+  let activeCategory = categories[0];
+  let currentQuestion = null;
+  let allQuestions = [];
+  
+  // Flatten all questions with metadata
+  Object.keys(questionBank).forEach(cat => {
+    questionBank[cat].forEach(item => {
+      allQuestions.push({ ...item, category: cat });
+    });
+  });
+  
   const els = {
     categoryTabs: document.getElementById("category-tabs"),
     search: document.getElementById("search"),
@@ -63,17 +74,6 @@
     questionProgress: document.getElementById("question-progress"),
     emptyState: document.getElementById("empty-state")
   };
-
-  let activeCategory = categories[0];
-  let currentQuestion = null;
-  let allQuestions = [];
-  
-  // Flatten all questions with metadata
-  Object.keys(questionBank).forEach(cat => {
-    questionBank[cat].forEach(item => {
-      allQuestions.push({ ...item, category: cat });
-    });
-  });
 
   const STORAGE_KEY = "ib_quiz_stars_v1";
   let starsByQuestion = readStars();
