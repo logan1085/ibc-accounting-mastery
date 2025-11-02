@@ -106,13 +106,11 @@ Be strict but fair. Focus on accounting accuracy. Include the correct_answer fie
 
         callOpenAI(prompt, (err, result) => {
           if (err) {
-            console.error('OpenAI error:', err);
             sendJSON(res, 500, { error: 'Grading failed', message: err.message });
             return;
           }
           
           try {
-            // Try to extract JSON from response
             const jsonMatch = result.match(/\{[\s\S]*\}/);
             const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : '{}');
             sendJSON(res, 200, parsed);
