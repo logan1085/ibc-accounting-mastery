@@ -45,9 +45,9 @@ function callOpenAI(prompt, callback) {
   }
 
   const data = JSON.stringify({
-    model: 'gpt-5-mini',
+    model: 'gpt-4o',
     messages: [{ role: 'user', content: prompt }],
-    max_completion_tokens: 500
+    temperature: 0.3
   });
 
   const options = {
@@ -88,33 +88,36 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const { question, answer } = JSON.parse(body);
-        const prompt = `You are an expert Investment Banking interviewer grading technical accounting answers. Using the breaking into wall street guide! 
+        const prompt = `You are an expert Investment Banking interviewer grading technical accounting answers.
 
 Question: "${question}"
 
 Student Answer: "${answer}"
 
-Evaluate if the answer demonstrates understanding. Respond with ONLY a JSON object:
+Respond with ONLY this JSON format:
 {
   "correct": true or false,
   "feedback": "brief explanation",
-  "correct_answer": "the key points a correct answer should include",
-  "score": a number 1-5 where 5 is perfect
+  "correct_answer": "key points a correct answer should include",
+  "score": a number from 1-5 where 5 is perfect
 }
 
-Be strict but fair. Focus on accounting accuracy. Include the correct_answer field that shows what a proper answer should cover.`;
+Be strict but fair. Focus on accounting accuracy.`;
 
         callOpenAI(prompt, (err, result) => {
           if (err) {
+            console.error('OpenAI error:', err);
             sendJSON(res, 500, { error: 'Grading failed', message: err.message });
             return;
           }
           
           try {
+            // Extract JSON from response
             const jsonMatch = result.match(/\{[\s\S]*\}/);
             const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : '{}');
             sendJSON(res, 200, parsed);
           } catch (e) {
+            console.error('Parse error:', e, 'Raw result:', result);
             sendJSON(res, 500, { error: 'Failed to parse AI response', raw: result });
           }
         });

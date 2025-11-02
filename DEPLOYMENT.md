@@ -34,11 +34,8 @@ In your Vercel project dashboard, add:
 
 ## Project Structure
 
-- `/api/grade.js` - Serverless function for AI grading
+- `server.js` - Node.js server with OpenAI API endpoint
 - `index.html` - Landing page and app
-- `styles.css` - Sequoia-inspired styling
+- `styles.css` - UI styling
 - `app.js` - Client-side app logic
-- `server.js` - Local dev server (not used in production)
-
-Vercel will automatically detect the `/api` folder and deploy serverless functions.
 

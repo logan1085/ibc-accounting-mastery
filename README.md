@@ -4,11 +4,11 @@ A beautiful, AI-powered quiz app for mastering Investment Banking technical acco
 
 ## Features
 
-- **56 Technical Questions** across 5 categories: Income Statement, Balance Sheet, Cash Flow, Valuation, DCF & M&A
-- **AI-Powered Grading**: Uses OpenAI GPT-4o-mini to evaluate your answers
+- **30 Technical Questions** across 3 categories: Financial Statements, Concepts, Calculations
+- **AI-Powered Grading**: Uses OpenAI GPT-4o to evaluate your answers
 - **5-Star Rating System**: Questions gain/lose stars based on your performance (1-5 stars)
-- **Beautiful Zeus-Inspired UI**: Cream/off-white theme with gold accents
-- **Progress Tracking**: Real-time stats on total questions, answered, and average rating
+- **Beautiful UI**: Clean, modern design
+- **Progress Tracking**: Real-time stats on total questions and answered count
 - **Local Storage**: Your progress persists across sessions
 
 ## Run
@@ -41,7 +41,7 @@ npm run dev
 ## Files
 
 - `index.html` - Quiz UI structure
-- `styles.css` - Zeus-themed styling (cream/gold)
+- `styles.css` - Modern styling
 - `app.js` - Quiz logic, star system, API integration
 - `server.js` - Node server with OpenAI API endpoint
 - `package.json` - npm scripts
@@ -57,5 +57,5 @@ npm run dev
 
 The app includes a `/api/grade` endpoint that:
 - Takes a question and answer
-- Calls OpenAI with a grading prompt
-- Returns JSON: `{ correct, feedback, score }`
+- Calls OpenAI GPT-4o with a grading prompt
+- Returns JSON: `{ correct, feedback, correct_answer, score }`
