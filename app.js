@@ -217,6 +217,8 @@
 
       const result = await response.json();
       
+      console.log('API response:', result);
+      
       if (!response.ok) {
         throw new Error(result.error || 'Grading failed');
       }
